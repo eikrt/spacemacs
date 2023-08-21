@@ -67,13 +67,7 @@
     (spacemacs-buffer/display-startup-note)
     (spacemacs/setup-startup-hook)
     (spacemacs/dump-eval-delayed-functions)
-    (when (and dotspacemacs-enable-server (not (spacemacs-is-dumping-p)))
-      (require 'server)
-      (when dotspacemacs-server-socket-dir
-        (setq server-socket-dir dotspacemacs-server-socket-dir))
-      (unless (server-running-p)
-        (message "Starting a server...")
-        (server-start)))))
+
 (global-set-key (kbd "M") nil)
 		      (define-key evil-insert-state-map "j" #'cofi/maybe-exit)
 		(evil-define-command cofi/maybe-exit ()
@@ -92,3 +86,10 @@
 		       (t (setq unread-command-events (append unread-command-events
 					  (list evt))))))))
 
+    (when (and dotspacemacs-enable-server (not (spacemacs-is-dumping-p)))
+      (require 'server)
+      (when dotspacemacs-server-socket-dir
+        (setq server-socket-dir dotspacemacs-server-socket-dir))
+      (unless (server-running-p)
+        (message "Starting a server...")
+        (server-start)))))
